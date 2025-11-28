@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aditi Fitness — Elite Student Gym</title>
+  <meta name="description" content="Aditi Fitness — student-focused premium gym. Responsive, animated, single-file HTML using TailwindCSS + small CSS + JS." />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#2563EB', // blue-600
+            accent: '#F97316' // orange-500
+          },
+          boxShadow: {
+            xlsoft: '0 25px 50px -12px rgba(37,99,235,0.12)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* small custom CSS (complements Tailwind) */
+    .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(6px); }
+    .hero-clip { clip-path: polygon(0 0,100% 0,100% 85%,0 100%); }
+    .card-float{ transform: translateY(8px); transition: transform .35s ease; }
+    .card-float:hover{ transform: translateY(-6px); }
+    .hide-scrollbar::-webkit-scrollbar {
+     display: none;
+    }
+    /* subtle focus ring for accessibility */
+    .focus-ring:focus{ outline:2px solid rgba(37,99,235,0.25); outline-offset:2px }
+  </style>
+</head>
+<body class="antialiased text-gray-800 bg-gray-50">
+
+  <!-- NAV -->
+  <header class="fixed w-full z-50 bg-white/80 backdrop-blur-sm shadow">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <div class="flex items-center space-x-3">
+          <!-- ADITI GYM LOGO (LARGER) -->
+          <img src="https://i.ibb.co/C33tpnPs/Aditi-Gym-logo.png" alt="Aditi Sports Logo" class="w-12 h-12 rounded-full object-contain">
+        </div>
+        <div class="hidden sm:block">
+          <div class="text-lg font-semibold">Aditi Fitness</div>
+          <div class="text-xs text-gray-500">LIFT HEAVY, LIVE LIGHT</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-lg font-medium">
+        <a href="#about" class="hover:text-yellow-300">About</a>
+        <a href="#plans" class="hover:text-yellow-300">Plans</a>
+        <a href="#trainers" class="hover:text-yellow-300">Trainers</a>
+        <a href="#schedule" class="hover:text-yellow-300">Schedule</a>
+        <a href="#results" class="hover:text-yellow-300">Results</a>
+        <a href="#contact" class="hover:text-yellow-300">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="ctaJoin" class="hidden md:inline-block px-4 py-2 rounded-md text-black font-medium hover:opacity-95" style="background-image: url(https://media.istockphoto.com/id/1312048077/vector/glittering-golden-bokeh-abstract-background.jpg?s=612x612&w=0&k=20&c=ZhjkGg8rv9FeFeJaEns8FcA6_5Twzwm78bCfp4FpzxM=);">Join Now</button>
+        <button id="mobileBtn" aria-label="menu" class="md:hidden p-2 rounded focus-ring">☰</button>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t bg-white/90">
+      <div class="px-4 py-4 flex flex-col gap-2">
+        <a href="#about" class="py-2">About</a>
+        <a href="#programs" class="py-2">Programs</a>
+        <a href="#trainers" class="py-2">Trainers</a>
+        <a href="#schedule" class="py-2">Schedule</a>
+        <a href="#pricing" class="py-2">Pricing</a>
+        <a href="#contact" class="py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="pt-24">
+    <section id="home" class="hero-clip relative overflow-hidden" style="background-image: url(https://img.freepik.com/free-photo/blurred-dumbbels_1203-104.jpg?semt=ais_hybrid&w=740&q=80); background-size: cover; background-position: center;">
+      <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-6">
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Transform Pain <br> into Power,<br><span class="text-brand" style="color: goldenrod;">Just belive in yourself</span></h1>
+          <p class="text-black text-xl max-w-xl">Aditi Fitness — the student gym built for champions. Structured programs, certified trainers, and an energetic community. Perfect for your inter-school fitness competition.</p>
+
+          <div class="flex gap-3 flex-wrap">
+            <a href="#programs" class="px-5 py-3 rounded-lg bg-brand text-black font-semibold shadow-md" style="background-color: gold;">Explore Programs</a>
+            <button class="px-5 py-3 rounded-lg border border-gray-200 text-black bg-white hover:shadow">Schedule</button>
+          </div>
+
+          <div class="mt-6 grid grid-cols-3 gap-5 text-xl text-gray-700 max-w-md">
+            <div><div class="text-2xl font-bold">50+</div><div class="text-lg">Weekly Classes</div></div>
+            <div><div class="text-2xl font-bold">320+</div><div class="text-lg">Students</div></div>
+            <div><div class="text-2xl font-bold">12</div><div class="text-lg">Pro Trainers</div></div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-8 -top-8 w-64 h-64 bg-gradient-to-tr from-brand/20 to-accent/20 rounded-3xl blur-3xl"></div>
+          <div class="glass rounded-3xl p-4 shadow-xl max-w-md mx-auto">
+            <img src="https://img.freepik.com/free-photo/view-gym-room-training-sports_23-2151699513.jpg?semt=ais_hybrid&w=740&q=80" alt="gym" class="w-full h-60 object-cover rounded-xl">
+            <div class="mt-4 px-2">
+              <h3 class="text-lg font-semibold">Free Trial Class</h3>
+              <p class="text-sm text-gray-600 mt-1">Claim a free day pass — limited seats for students.</p>
+              <div class="mt-3 flex gap-2">
+                <button class="px-4 py-2 bg-brand border-2 rounded-md" style="background-color: gold;">Claim Pass</button>
+                <button id="modalOpen" class="px-4 py-2 border-2 rounded-md">Book Trial</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- decorative SVG -->
+      <svg class="absolute right-0 top-0 opacity-10" width="400" height="400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="40" stroke="#2563EB" stroke-width="10"/>
+      </svg>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20">
+      <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4 fade-up">
+          <h2 class="text-3xl font-bold">About Aditi Fitness</h2>
+          <p class="text-gray-600 text-xl">We focus on safe training, progressive overload, and athlete-style conditioning — built especially for school students preparing for competitions.</p>
+
+          <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xl text-gray-700">
+            <li class="flex items-start gap-3"><span class="text-brand font-bold">✓</span> Certified Trainers</li>
+            <li class="flex items-start gap-3"><span class="text-brand font-bold">✓</span> Injury Prevention</li>
+            <li class="flex items-start gap-3"><span class="text-brand font-bold">✓</span> Personalized Plans</li>
+            <li class="flex items-start gap-3"><span class="text-brand font-bold">✓</span> Nutrition Guidance</li>
+          </ul>
+        </div>
+
+        <div class="fade-up">
+          <img src="https://t4.ftcdn.net/jpg/07/54/36/19/360_F_754361913_oxSaGYcI9ReLLnNf8LUKXT3CGE5jobGQ.jpg" class="rounded-2xl shadow-xl" alt="about gym">
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="py-20 bg-gray-900 bg-white" id="plans">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h2 class="text-5xl font-bold text-white mb-10" style="color: black;">Premium Membership Plans</h2>
+    <p class="text-black max-w-2xl mx-auto mb-14 text-lg">
+      Choose from our upgraded membership plans designed for all fitness levels—from beginners to advanced athletes. Enjoy world-class equipment, 
+      certified trainers, diet support, steam/sauna, and transformation-focused programs.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="p-10 rounded-2xl shadow-2xl border border-gray-700 hover:scale-105 transition-all duration-300" style="background-color: white;">
+        <h3 class="text-3xl text-black font-semibold mb-6">Starter Pack</h3>
+        <ul class="text-black space-y-3 text-left mb-8">
+          <li>✔ Unlimited Gym Access</li>
+          <li>✔ Basic Trainer Supervision</li>
+          <li>✔ Cardio & Strength Zone</li>
+          <li>✔ Locker Facility</li>
+          <li>✔ Weekly Diet Tips</li>
+        </ul> <br><br><br><br>
+        <button class="px-8 py-3 rounded-xl text-black font-bold w-full" style="background-color: gold;">Join Starter</button>
+      </div>
+
+      <div class="p-12 bg-white text-black rounded-2xl shadow-3xl border border-black hover:scale-110 transition-all duration-300">
+        <h3 class="text-3xl font-semibold mb-6">Transformation Plan</h3>
+        <ul class="space-y-3 text-left mb-8">
+          <li>✔ Daily Personal Training</li>
+          <li>✔ Custom Diet Plan</li>
+          <li>✔ Progress Tracking + Guidance</li>
+          <li>✔ Steam + Sauna</li>
+          <li>✔ Supplement Advice</li>
+          <li>✔ Weekly Body Analysis</li>
+        </ul><br><br>
+        <button class="px-8 py-3 rounded-xl font-bold w-full" style="background-color: gold;">Join Transformation</button>
+      </div>
+
+      <div class="p-10 bg-white rounded-2xl shadow-2xl border border-gray-700 hover:scale-105 transition-all duration-300">
+        <h3 class="text-3xl text-black font-semibold mb-6">Elite Athlete Pack</h3>
+        <ul class="text-black space-y-3 text-left mb-8">
+          <li>✔ 2 Hours Personal Training Daily</li>
+          <li>✔ Strength & Conditioning Program</li>
+          <li>✔ Full Diet Control + Supplement Kit</li>
+          <li>✔ Exclusive Athlete Zone</li>
+          <li>✔ 24/7 Fitness Support</li>
+        </ul> <br><br><br><br>
+        <button class="px-8 py-3 rounded-xl text-black font-bold w-full" style="background-color: gold;">Join Elite</button>
+      </div>
+    </div>
+  </div>
+     </section>
+
+    <!-- SCHEDULE -->
+    <section id="schedule" class="py-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center">Weekly Schedule</h2>
+        <p class="text-center text-2xl text-gray-600 mt-2">Find classes that fit your timetable</p>
+
+        <div class="mt-8 overflow-auto rounded-2xl hide-scrollbar">
+          <table class="min-w-full bg-white rounded-2xl shadow">
+            <thead class="bg-gray-100 rounded-t-2xl">
+              <tr>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Time</th>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Monday</th>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Tuesday</th>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Wednesday</th>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Thursday</th>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Friday</th>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Saturday</th>
+                <th class="px-6 py-3 text-left border-2 border-black" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151088147.jpg);">Sunday</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t">
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">6:00 - 7:00 AM</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Cardio</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Cardio</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Cardio</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Cardio</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Cardio</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Cardio</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Rest</td>
+              </tr>
+              <tr class="border-t">
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">4:00 - 5:00 PM</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Legs</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Chest/Triceps</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Back/Biceps</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Shoulders/Abs</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Full Body</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Active Recovery</td>
+                <td class="px-6 py-4 border border-black text-black" style="background-image: url(https://t4.ftcdn.net/jpg/03/01/60/43/360_F_301604316_Fgn2945Q6MNZaaIqNn4jO589FEZoofru.jpg);">Rest</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINERS -->
+    <section id="trainers" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center">Meet Our Trainers</h2>
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+          <div class="rounded-2xl p-6 shadow-md fade-up" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151059803.jpg); background-size: cover; background-position: center;">
+            <img src="https://media.assettype.com/freepressjournal/2020-06/d3a061b8-2ea5-459f-bae0-291f7f3a6233/96284681_241420020477724_5197438606041011838_n__1_.jpg" class="w-full h-64 object-cover rounded-lg" alt="trainer">
+            <h3 class="mt-4 text-xl font-semibold">Rahul — Strength Coach</h3>
+            <p class="text-sm black">Powerlifting basics & technique coach.</p>
+            <!-- <div class="mt-3 flex gap-2">
+              <button class="px-3 py-1 border rounded">1:1 PT</button>
+              <button class="px-3 py-1 border rounded">Group</button>
+            </div> -->
+          </div>
+
+          <div class="rounded-2xl p-6 shadow-md fade-up" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151059803.jpg); background-size: cover; background-position: center;">
+            <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202212/untitled_design_-_2022-12-20t130616.300-one_one.png?VersionId=_EOJgqFVVXBu5i2VYmo5E2.wtwEas4oN" class="w-full h-64 object-cover rounded-lg" alt="trainer">
+            <h3 class="mt-4 text-xl font-semibold">Mary Kom — Cardio & Boxer</h3>
+            <p class="text-sm text-black">High-energy sessions & endurance plans.</p>
+            <!-- <div class="mt-3 flex gap-2">
+              <button class="px-3 py-1 border rounded">1:1 PT</button>
+              <button class="px-3 py-1 border rounded">Group</button>
+            </div> -->
+          </div>
+
+          <div class="rounded-2xl p-6 shadow-md fade-up" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151059803.jpg); background-size: cover; background-position: center;">
+            <img src="https://t4.ftcdn.net/jpg/05/47/05/79/360_F_547057956_wb5qHhFDHDBwZLXDP0J1UwwWYYHUeIat.jpg" class="w-full h-64 object-cover rounded-lg" alt="trainer">
+            <h3 class="mt-4 text-xl font-semibold">Amit — Mobility & Yoga</h3>
+            <p class="text-sm text-black">Injury prevention & flexibility programs.</p>
+            <!-- <div class="mt-3 flex gap-2">
+              <button class="px-3 py-1 border rounded">1:1 PT</button>
+              <button class="px-3 py-1 border rounded">Group</button>
+            </div> -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSFORMATIONS (COUNTERS + CARDS) -->
+    <section id="results" class="py-20">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold">Results That Show</h2>
+        <p class="text-black text-xl mt-2">Student transformations from consistent training.</p>
+
+        <div class="mt-8 grid grid-cols-3 gap-6">
+          <div class="bg-[#FFD700] p-6 rounded-2xl shadow">
+            <div class="text-4xl font-extrabold" data-target="320">0</div>
+            <div class="text-xl text-black">Active Students</div>
+          </div>
+
+          <div class="bg-[#FFD700] p-6 rounded-2xl shadow">
+            <div class="text-4xl font-extrabold" data-target="85">0</div>
+            <div class="text-xl text-black">Competition Wins</div>
+          </div>
+
+          <div class="bg-[#FFD700] p-6 rounded-2xl shadow">
+            <div class="text-4xl font-extrabold" data-target="12">0</div>
+            <div class="text-xl text-black">Pro Trainers</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center">Gallery</h2>
+        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <img src="https://t3.ftcdn.net/jpg/01/08/99/20/360_F_108992094_SZ5WSERYBUzfI2uookwvFQdFc6DSt9IB.jpg" class="w-full h-48 object-cover rounded-lg">
+          <img src="https://3dbrute.com/wp-content/uploads/2019/09/Gym-room-3dsmax-3d-model-2.jpg" class="w-full h-48 object-cover rounded-lg">
+          <img src="https://png.pngtree.com/thumb_back/fh260/background/20240329/pngtree-rows-of-dumbbells-in-the-gym-image_15662386.jpg" class="w-full h-48 object-cover rounded-lg">
+          <img src="https://cdn.prod.website-files.com/634053de3cf351fe4c9ff01b/634053de3cf351777f9ff4fd_fitness-center-gym-3d-model-max.jpg" class="w-full h-48 object-cover rounded-lg">
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center">FAQs</h2>
+        <div class="mt-6 space-y-3">
+          <details class="p-4 bg-white cursor-pointer text-xl bg-yellow-200 rounded-2xl shadow" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151059803.jpg);  background-size: cover; background-position: center;"><summary class="font-semibold">What should I bring to the gym?</summary><p class="mt-2 text-black">Water bottle, towel, proper shoes, and energy to train.</p></details>
+          <details class="p-4 bg-white cursor-pointer text-xl bg-yellow-200 rounded-2xl shadow" style="background-image: url(https://img.freepik.com/free-vector/realistic-solid-gold-background_23-2151059803.jpg);  background-size: cover; background-position: center;"><summary class="font-semibold">Are classes student-friendly?</summary><p class="mt-2 text-black">Yes — all programs are tailored for school students with safety-first approach.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS CAROUSEL -->
+    <section id="testimonials" class="py-20">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        
+        <h2 class="text-4xl font-bold text-black">What Students Say</h2>
+    
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+          <div class="p-6 rounded-xl border border-[#D4AF37]/30 shadow-lg" style="background-image: url(https://img.freepik.com/free-vector/elegant-gold-hand-painted-alcohol-ink-background-design_1048-18235.jpg?semt=ais_hybrid&w=740&q=80);"  background-size: cover; background-position: center;>
+            <p class="text-black text-xl">"I won my school's fitness challenge — coach Rahul helped me with a perfect plan."</p>
+            <div class="mt-4 text-lg text-black">— Meera</div>
+          </div>
+    
+          <div class="p-6 rounded-xl border border-[#D4AF37]/30 shadow-lg" style="background-image: url(https://img.freepik.com/free-vector/elegant-gold-hand-painted-alcohol-ink-background-design_1048-18235.jpg?semt=ais_hybrid&w=740&q=80);"  background-size: cover; background-position: center;>
+            <p class="text-black text-xl">"Group classes are fun and structured — best place for students."</p>
+            <div class="mt-4 text-lg text-black">— Sameer</div>
+          </div>
+    
+          <div class="p-6 rounded-xl border border-[#D4AF37]/30 shadow-lg" style="background-image: url(https://img.freepik.com/free-vector/elegant-gold-hand-painted-alcohol-ink-background-design_1048-18235.jpg?semt=ais_hybrid&w=740&q=80);"  background-size: cover; background-position: center;>
+            <p class="text-black text-xl">"Affordable and super clean. I recommend Aditi Fitness to all my friends."</p>
+            <div class="mt-4 text-lg text-black">— Anika</div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & MAP -->
+    <section class="py-20 bg-white" id="contact">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-black text-center mb-12">Contact Us</h2>
+        <div class="flex flex-col lg:flex-row gap-10">
+    
+          <!-- Contact Form -->
+          <div class="lg:w-1/2 bg-white p-8 rounded-xl shadow-lg border border-[#D4AF37]/40">
+            <form>
+              <div class="mb-4">
+                <label class="block text-black mb-2">Your Name</label>
+                <input type="text" placeholder="Enter your name" class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" />
+              </div>
+    
+              <div class="mb-4">
+                <label class="block text-black mb-2">Your Email</label>
+                <input type="email" placeholder="Enter your email" class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" />
+              </div>
+    
+              <div class="mb-4">
+                <label class="block text-black mb-2">Your Message</label>
+                <textarea placeholder="Enter your message" rows="5" class="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-300"></textarea>
+              </div>
+    
+              <button type="submit" class="w-full bg-yellow-400 text-black py-3 rounded-lg hover:bg-yellow-300 font-bold transition">Send Message</button>
+            </form>
+          </div>
+    
+          <!-- Map -->
+          <div class="lg:w-1/2 h-[500px] rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0193246293567!2d-122.41941518468103!3d37.77492977975995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064df12f897%3A0x7c9a1f5d5c8f1b9!2sSan%20Francisco!5e0!3m2!1sen!2sin!4v1699109075911!5m2!1sen!2sin"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-8">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-sm text-white">© <span id="year"></span> Aditi Fitness — All rights reserved.</div>
+        <div class="flex gap-4 text-sm text-white">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- SIGNUP MODAL -->
+  <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40">
+    <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl">
+      <h3 class="text-xl font-bold">Book Your Trial</h3>
+      <p class="text-gray-600 mt-2">Fill details and we will call to confirm your slot.</p>
+      <form id="modalForm" class="mt-4 grid gap-3">
+        <input name="mname" class="border p-3 rounded" placeholder="Full name" required>
+        <input name="mphone" class="border p-3 rounded" placeholder="Phone" required>
+        <div class="flex gap-2 justify-end mt-2">
+          <button type="button" id="modalClose" class="px-4 py-2 border rounded">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-brand text-white rounded">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS: interactions, animations, sliders -->
+  <script>
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+
+    // Modal
+    const modal = document.getElementById('modal');
+    document.getElementById('modalOpen').addEventListener('click', ()=> modal.classList.remove('hidden'));
+    document.getElementById('modalClose').addEventListener('click', ()=> modal.classList.add('hidden'));
+    modal.addEventListener('click', (e)=> { if(e.target===modal) modal.classList.add('hidden'); });
+
+    // Intersection observer for fade-up elements
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:0.18});
+    document.querySelectorAll('.fade-up').forEach(el=> io.observe(el));
+
+    // Simple counter animation
+    const counters = document.querySelectorAll('[data-target]');
+    const runCounters = ()=>{
+      counters.forEach(c=>{
+        const target = +c.dataset.target;
+        let count = 0;
+        const step = Math.max(1, Math.floor(target/100));
+        const timer = setInterval(()=>{
+          count += step;
+          if(count >= target){ c.innerText = target; clearInterval(timer); }
+          else c.innerText = count;
+        }, 12);
+      });
+    }
+    // trigger counters when visible
+    const cObserver = new IntersectionObserver((ents)=>{
+      ents.forEach(e=>{ if(e.isIntersecting){ runCounters(); cObserver.disconnect(); } });
+    },{threshold:0.4});
+    if(counters.length) cObserver.observe(counters[0]);
+
+    // Form (demo only: simple validation & message)
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fm = new FormData(contactForm);
+      if(!fm.get('name') || !fm.get('phone') || !fm.get('email')){ alert('Fill required fields'); return; }
+      document.getElementById('formMsg').classList.remove('hidden');
+      setTimeout(()=> document.getElementById('formMsg').classList.add('hidden'),5000);
+      contactForm.reset();
+    });
+
+    // Modal form
+    document.getElementById('modalForm').addEventListener('submit',(e)=>{ e.preventDefault(); modal.classList.add('hidden'); alert('Thanks! We will call to confirm your slot.'); });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){ e.preventDefault(); document.querySelector(href).scrollIntoView({behavior:'smooth', block:'start'}); mobileMenu.classList.add('hidden'); }
+      });
+    });
+
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+  </script>
+</body>
+</html>
